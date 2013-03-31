@@ -12,6 +12,8 @@
 (require 'init-recentfiles)
 (require-package 'smooth-scrolling)
 
+(require 'init-themes)
+
 ;; Variables configured via the interactive customize interface
 (setq custom-file "~/.emacs.d/custom.el")
 (when (file-exists-p custom-file)
