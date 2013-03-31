@@ -16,7 +16,7 @@ re-downloaded in order to locate PACKAGE."
         (package-install package)
       (progn
 	(package-refresh-contents)
-	(require-package packe min-version t)))))
+	(require-package package min-version t)))))
 
 ;; Add standard package repositories
 (add-to-list 'package-archives
