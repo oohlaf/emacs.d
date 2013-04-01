@@ -6,6 +6,12 @@
 (require-package 'gitignore-mode)
 (require-package 'gitconfig-mode)
 
+(setq magit-save-some-buffers nil
+      magit-process-popup-time 10
+      magit-completing-read-function 'magit-ido-completing-read)
+
+(global-set-key (kbd "C-c g") 'magit-status)
+
 (eval-after-load 'magit
   '(progn
      ;; Full screen magit-status
