@@ -8,6 +8,7 @@
 
 ;; Configure specific features or modes
 (require 'init-git)
+(require 'init-lisp)
 
 ;; Be smart about parens pairs
 (require 'init-smartparens)
