@@ -7,14 +7,15 @@
 (require 'init-elpa)
 
 ;; Configure specific features or modes
+(require 'init-ido)
 (require 'init-git)
-(require 'init-lisp)
-
 ;; Be smart about parens pairs
 (require 'init-smartparens)
-
 ;; Show menu of recently edited files
 (require 'init-recentfiles)
+
+;; Language modes
+(require 'init-lisp)
 
 ;; Layout
 (require 'init-themes)
