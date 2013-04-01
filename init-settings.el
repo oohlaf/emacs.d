@@ -5,4 +5,7 @@
 ;; Use all columns (default is 72)
 (setq fill-column 80)
 
+;; Keep cursor away from edges
+(require-package 'smooth-scrolling)
+
 (provide 'init-settings)
