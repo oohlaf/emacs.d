@@ -9,6 +9,9 @@
 ;; Configure specific features or modes
 (require 'init-git)
 
+;; Be smart about parens pairs
+(require 'init-smartparens)
+
 ;; Show menu of recently edited files
 (require 'init-recentfiles)
 
