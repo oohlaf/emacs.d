@@ -37,7 +37,6 @@
 (defun sanityinc/lisp-setup()
   "Enable features useful in any Lisp mode."
   (rainbow-delimiters-mode t)
-  ;(enable-paredit-mode)
   (turn-on-eldoc-mode))
 
 (defun sanityinc/emacs-lisp-setup()
@@ -74,15 +73,9 @@
 
 (require-package 'eldoc-eval)
 
-
 (add-to-list 'auto-mode-alist '("\\.emacs-project\\'" . emacs-lisp-mode))
 ;; package.el archive files
 (add-to-list 'auto-mode-alist '("archive-contents\\'" . emacs-lisp-mode))
-
-;; Enhance lisp modes keybindings
-;; https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-lisp.el
-(define-key read-expression-map (kbd "TAB") 'lisp-complete-symbol)
-(define-key lisp-mode-shared-map (kbd "RET") 'reindent-then-newline-and-indent)
 
 ;; Delete .elc files when reverting the .el from VC or magit
 ;;
@@ -114,6 +107,24 @@
 (defadvice vc-revert-buffer-internal (around sanityinc/reverting activate)
   (let ((sanityinc/vc-reverting t))
     ad-do-it))
+
+;; Make C-x C-e run 'eval-region if the region is active
+(defun sanityinc/eval-last-sexp-or-region (beg end prefix)
+  "Eval region from BEG to END if active, otherwise the last sexp."
+  (interactive "r\nP")
+  (if (use-region-p)
+      (eval-region beg end)
+    (pp-eval-last-sexp prefix)))
+
+;; Enhance lisp modes keybindings
+(eval-after-load 'lisp-mode
+  '(progn
+     ;; Make C-x C-e run 'eval-region if the region is active
+     (define-key emacs-lisp-mode-map (kbd "C-x C-e") 'sanityinc/eval-last-sexp-or-region)
+     ;; Key bindings from starter-kit-lisp
+     ;; https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-lisp.el
+     (define-key read-expression-map (kbd "TAB") 'lisp-complete-symbol)
+     (define-key lisp-mode-shared-map (kbd "RET") 'reindent-then-newline-and-indent)))
 
 ;; A quick way to jump to the definition of a function given its key binding
 (global-set-key (kbd "C-h K") 'find-function-on-key)
