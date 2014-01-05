@@ -1,7 +1,7 @@
 ;; No splash screen
 (setq inhibit-startup-message t)
 
-(add-to-list 'load-path (expand-file-name user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Load package system
 (require 'init-elpa)
