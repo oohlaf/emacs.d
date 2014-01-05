@@ -1,7 +1,7 @@
 ;; No splash screen
 (setq inhibit-startup-message t)
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name user-emacs-directory))
 
 ;; Load package system
 (require 'init-elpa)
@@ -22,6 +22,6 @@
 (require 'init-settings)
 
 ;; Variables configured via the interactive customize interface
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
