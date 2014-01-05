@@ -16,6 +16,7 @@
 
 ;; Language modes
 (require 'init-lisp)
+(require 'init-python)
 
 ;; Layout
 (require 'init-themes)
