@@ -4,13 +4,14 @@
 ;; Automatic byte compilation
 (require-package 'auto-compile)
 (auto-compile-on-save-mode 1)
+(auto-compile-on-load-mode 1)
 
 ;; Support byte-compilation in a sub-process, as required by highlight-cl
 (defun sanityinc/byte-compile-file-batch (filename)
   "Byte-compile FILENAME in batch mode, ie. a clean sub-process."
   (interactive "fFile to byte-compile in batch mode: ")
   (let ((emacs (car command-line-args)))
-    (shell-command
+    (compile
       (concat
 	emacs " "
 	(mapconcat
@@ -18,6 +19,7 @@
 	  (list "-Q" "-batch" "-f" "batch-byte-compile" filename)
 	  " ")))))
 
+;; Highlight current sexp
 (require-package 'hl-sexp)
 
 ;; Prevent flickery behavior due to hl-sexp-mode unhighlighting
@@ -112,5 +114,8 @@
 (defadvice vc-revert-buffer-internal (around sanityinc/reverting activate)
   (let ((sanityinc/vc-reverting t))
     ad-do-it))
+
+;; A quick way to jump to the definition of a function given its key binding
+(global-set-key (kbd "C-h K") 'find-function-on-key)
 
 (provide 'init-lisp)
