@@ -7,6 +7,7 @@
 (require 'init-elpa)
 
 ;; Configure specific features or modes
+(require 'init-flycheck)
 (require 'init-ido)
 (require 'init-git)
 ;; Be smart about parens pairs
