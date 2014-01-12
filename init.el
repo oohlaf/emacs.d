@@ -16,6 +16,7 @@
 
 ;; Language modes
 (require 'init-lisp)
+(require 'init-php)
 (require 'init-python)
 
 ;; Layout
