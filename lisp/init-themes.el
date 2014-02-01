@@ -1,6 +1,10 @@
 (setq theme-pkg 'birds-of-paradise-plus-theme)
 (setq theme-name 'birds-of-paradise-plus)
 
+;; Set a pretty mode line
+(require-package 'powerline)
+(powerline-default-theme)
+
 (when (>= emacs-major-version 24)
   (require-package theme-pkg)
 
