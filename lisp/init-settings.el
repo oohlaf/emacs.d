@@ -1,9 +1,11 @@
-;; Always show line and column numbers
-(setq line-number-mode t)
-(setq column-number-mode t)
-
-;; Use all columns (default is 72)
-(setq fill-column 80)
+(setq
+ ;; Always show line and column numbers
+ line-number-mode t
+ column-number-mode t
+ ;; Use all columns (default is 72)
+ fill-column 80
+ ;; Avoid beeping by flashing the window
+ visible-bell t)
 
 ;; Keep cursor away from edges
 (require-package 'smooth-scrolling)
