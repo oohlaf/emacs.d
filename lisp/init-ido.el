@@ -6,9 +6,8 @@
 (setq ido-auto-merge-work-directories-length 0)
 (setq ido-use-virtual-buffers t)
 
-(when (eval-when-compile (>= emacs-major-version 24))
-  (require-package 'ido-ubiquitous)
-  (ido-ubiquitous-mode t))
+(require-package 'ido-ubiquitous)
+(ido-ubiquitous-mode t)
 
 (require-package 'smex)
 (global-set-key [remap execute-extended-command] 'smex)
@@ -17,15 +16,5 @@
 
 ;; Allow the same buffer to be open in different frames
 (setq ido-default-buffer-method 'selected-window)
-
-(when (eval-when-compile (< emacs-major-version 24))
-  (defun sanityinc/ido-choose-from-recentf ()
-    "Use ido to select a recently opened file from the `recentf-list'"
-    (interactive)
-    (if (and ido-use-virtual-buffers (fboundp 'ido-toggle-virtual-buffers))
-        (ido-switch-buffer)
-      (find-file (ido-completing-read "Open file: " recentf-list nil t))))
-
-  (global-set-key [(meta f11)] 'sanityinc/ido-choose-from-recentf))
 
 (provide 'init-ido)
