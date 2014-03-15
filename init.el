@@ -14,6 +14,8 @@
 (require 'init-smartparens)
 ;; Show menu of recently edited files
 (require 'init-recentfiles)
+;; Org mode
+(require 'init-org)
 
 ;; Language modes
 (require 'init-lisp)
