@@ -7,12 +7,13 @@
 
 (setq org-agenda-files
       (list "~/Documents/org/personal.org"
-	    "~/Documents/org/hp.org"
-	    "~/Documents/org/people.org"))
+            "~/Documents/org/hp.org"
+            "~/Documents/org/people.org"))
 
 (setq org-log-done t
       org-completion-use-ido t
-      org-tag-column 80)
+      org-tag-column 80
+      org-startup-indented t)
 
 ;; On Windows enable Outlook integration
 (if (or (eq system-type 'windows-nt)
