@@ -7,6 +7,8 @@
 
 ;; Sentences do not need double spaces to end. Period.
 (set-default 'sentence-end-double-space nil)
+;; No tabs, use spaces
+(setq-default indent-tabs-mode nil)
 
 ;; Accept y or n to answer yes or no questions
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -22,5 +24,10 @@
 ;; Add parts of each file's directory to the buffer name if not unique
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
+
+;; On Windows speed up file operations
+(if (or (eq system-type 'windows-nt)
+        (eq system-type 'cygwin))
+    (setq w32-get-true-file-attributes nil))
 
 (provide 'init-settings)
