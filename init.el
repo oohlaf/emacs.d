@@ -5,6 +5,7 @@
   (unless (>= emacs-major-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
+(server-start)
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Load package system
