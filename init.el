@@ -94,6 +94,49 @@ re-downloaded in order to locate PACKAGE."
 
     (add-hook 'allout-mode-hook 'my-allout-mode-hook)))
 
+;;;_ * Ido
+
+(use-package ido
+  :init
+  (progn
+    (ido-everywhere t)
+    (ido-mode t))
+  :config
+  (progn
+    (use-package ido-hacks
+      :ensure t
+      :init (ido-hacks-mode 1))
+
+    ;; Silence warning references to free variables when
+    ;; compiling ido-ubiquitous
+    (defvar predicate nil)
+    (defvar inherit-input-method nil)
+    (defvar ido-cur-item nil)
+    (defvar ido-cur-list nil)
+    (defvar ido-default-item nil)
+
+    (use-package ido-ubiquitous
+      :ensure t
+      :commands ido-ubiquitous-mode
+      :init (ido-ubiquitous-mode 1))
+
+    (use-package idomenu
+      :ensure t
+      :bind ("C-c i" . idomenu)
+      :config (setq imenu-auto-rescan t))
+
+    (use-package smex
+      :ensure t
+      :bind ("M-x" . smex)
+      :init (smex-initialize))
+
+    (setq ido-enable-flex-matching t
+          ido-use-filename-at-point nil
+          ido-auto-merge-work-directories-length 0
+          ido-use-virtual-buffers t
+          ido-default-buffer-method 'selected-window
+          ido-default-file-method 'selected-window)))
+
 ;;;_ * Lisp
 
 (use-package lisp-mode
