@@ -19,7 +19,7 @@
   (unless (>= emacs-major-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
-;;;_ * Packaging
+;;;_ * Packaging infrastructure
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -66,7 +66,7 @@ re-downloaded in order to locate PACKAGE."
               (concat (symbol-name mode) "-hook"))))
           lisp-modes))
 
-;;;_* Packages
+;;;_* Generic packages
 
 ;;;_ * Allout
 
@@ -137,6 +137,21 @@ re-downloaded in order to locate PACKAGE."
           ido-default-buffer-method 'selected-window
           ido-default-file-method 'selected-window)))
 
+;;;_ * Smartparens
+
+(use-package smartparens
+  :ensure t
+  :commands (smartparens-mode show-smartparens-mode)
+  :init
+  (progn
+    (require 'smartparens-config)
+    ;; Skip closing delimiter on delete
+    (smartparens-global-strict-mode 1)
+    ;; Highlight matching pairs
+    (show-smartparens-global-mode 1)))
+
+;;;_* Major language modes
+
 ;;;_ * Lisp
 
 (use-package lisp-mode
@@ -195,7 +210,7 @@ re-downloaded in order to locate PACKAGE."
 
     (hook-into-modes #'my-lisp-mode-hook lisp-mode-hooks)))
 
-;;;_* Settings
+;;;_* Generic settings
 
 (setq
  ;; Show line and column numbers
