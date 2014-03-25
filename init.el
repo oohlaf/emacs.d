@@ -137,6 +137,28 @@ re-downloaded in order to locate PACKAGE."
           ido-default-buffer-method 'selected-window
           ido-default-file-method 'selected-window)))
 
+;;;_ * Magit
+
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)
+         ("C-x G" . magit-status-with-prefix))
+  :init
+  (progn
+    (defun magit-status-with-prefix ()
+      (interactive)
+      (let ((current-prefix-arg '(4)))
+        (call-interactively 'magit-status)))
+
+    (add-hook 'magit-mode-hook 'hl-line-mode))
+
+  :config
+  (progn
+    (add-hook 'magit-log-edit-mode-hook
+              #'(lambda ()
+                  (set-fill-column 72)
+                  (flyspell-mode)))))
+
 ;;;_ * Smartparens
 
 (use-package smartparens
