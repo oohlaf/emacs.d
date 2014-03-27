@@ -232,6 +232,30 @@ re-downloaded in order to locate PACKAGE."
 
     (hook-into-modes #'my-lisp-mode-hook lisp-mode-hooks)))
 
+;;;_ * Org mode
+
+(use-package org
+  :bind ("C-c l" . org-store-link)
+  :config
+  (progn
+    (setq org-tag-column 80)
+
+    (add-hook 'org-mode-hook
+              (lambda ()
+                (org-indent-mode t)
+                (visual-line-mode t)))
+
+    (use-package org-agenda
+      :bind ("C-c a" . org-agenda))
+
+    (use-package org-capture
+      :bind ("C-c c" . org-capture))
+
+    (use-package org-outlook
+      :if (or (eq system-type 'windows-nt)
+              (eq system-type 'cygwin))
+      :ensure t)))
+
 ;;;_* Generic settings
 
 (setq
