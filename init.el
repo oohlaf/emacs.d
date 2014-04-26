@@ -236,7 +236,7 @@ re-downloaded in order to locate PACKAGE."
 
 (use-package org
   :bind ("C-c l" . org-store-link)
-  :config
+  :init
   (progn
     (setq org-tag-column 80)
 
@@ -254,7 +254,11 @@ re-downloaded in order to locate PACKAGE."
     (use-package org-outlook
       :if (or (eq system-type 'windows-nt)
               (eq system-type 'cygwin))
-      :ensure t)))
+      :ensure t
+      ; :init
+      ; (customize-set-variable org-outlook-location (w32-short-file-name
+      ; "C:/Program Files \(x86\)/Microsoft Office/Office15/OUTLOOK.EXE"))
+      )))
 
 ;;;_* Generic settings
 
